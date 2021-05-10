@@ -1,5 +1,7 @@
 'use strict';
 
+/*
+IDK IF IT IS WORKING
 function calculate() {
     let var_num = +document.documentElement.querySelector("#var_input").value;
     let eq_num = +document.documentElement.querySelector("#eq_input").value;
@@ -144,3 +146,4 @@ function reverse_movement(mtrx, answers_arr, pos, delta) {
         mtrx[i].splice(mtrx[i].length - 2, 1);
     }
 }
+*/

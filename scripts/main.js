@@ -14,10 +14,7 @@ function create_mathjax_hint_element(letter, number1, sign_after) {
     return new_hint;
 }
 
-function create_system_inputfield(method_author) {
-    let var_num = +document.documentElement.querySelector("#" + method_author + "_var_input").value;
-    let eq_num = +document.documentElement.querySelector("#" + method_author + "_eq_input").value;
-    let main_div = document.documentElement.querySelector("#" + method_author + "_div_eqs");
+function create_system_inputfield(eq_num, var_num, main_div) {
     main_div.innerHTML = "";
     console.log("here");
     for (let i = 0; i < eq_num; i++) {
@@ -36,16 +33,25 @@ function create_system_inputfield(method_author) {
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, "main_div"]);
 }
 
+function create_gauss_inputfield() {
+    let var_num = +document.documentElement.querySelector("#gauss_var_input").value;
+    let eq_num = +document.documentElement.querySelector("#gauss_eq_input").value;
+    let main_div = document.documentElement.querySelector("#gauss_div_eqs");
+    create_system_inputfield(eq_num, var_num, main_div);
+}
+
 document.documentElement.querySelector("#gauss_eq_input").addEventListener("input", function() {
-    create_system_inputfield("gauss");
+    create_gauss_inputfield();
 });                                                         
 document.documentElement.querySelector("#gauss_var_input").addEventListener("input", function() {
-    create_system_inputfield("gauss");
+    create_gauss_inputfield();
 });
-document.documentElement.querySelector("#cramer_eq_input").addEventListener("input", function() {
-    create_system_inputfield("cramer");
-});                                                           
-document.documentElement.querySelector("#cramer_var_input").addEventListener("input", function() {
-    create_system_inputfield("cramer");
-});                                                                 
-document.documentElement.querySelector("#gauss_btn_count").addEventListener("click", calculate);
+document.documentElement.querySelector("#cramer_num_input").addEventListener("input", function() {
+    let var_num = +document.documentElement.querySelector("#cramer_num_input").value;
+    let main_div = document.documentElement.querySelector("#cramer_div_eqs");
+    let eq_num = var_num;
+    create_system_inputfield(eq_num, var_num, main_div);
+});                                                   
+
+//document.documentElement.querySelector("#gauss_btn_count").addEventListener("click", calculate);
+document.documentElement.querySelector("#cramer_btn_count").addEventListener("click", cramer_method);
