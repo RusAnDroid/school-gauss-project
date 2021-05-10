@@ -1,0 +1,149 @@
+@font-face {
+	font-family: 'Jura'; 
+	src: url(../fonts/Jura/Jura-VariableFont_wght.ttf); 
+}
+
+body {
+    margin: 0;
+    font-family: 'Jura';
+    background-color: #e8e8e8;
+}
+
+main {
+    background-color: #fff;
+    padding: 60px;
+    margin-top: 80px;
+}
+
+footer {
+    background-color: #fff;
+    padding: 60px;
+}
+
+a:visited {
+    color: #58408a;
+}
+
+a:hover, a:active, a:focus, a:visited {
+    text-decoration: underline;
+}
+
+a {
+    color: #8e75c1;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+input {
+    margin: 5px 5px 5px 0;
+    width: 50px;
+}
+
+.container {
+    width: 90vw;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header li {
+    list-style-type: none;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    background-color: #59418c;
+    width: 100%;
+    height: 80px;
+    font-weight: bold;
+    font-size: 20pt;
+    color: white;
+}
+
+header a:visited, header a:hover, header a:active, headr a, header a:focus {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:visited, nav a:hover, nav a:active, nav a, nav a:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+header ul.flex-block {
+    min-width: 500px;
+}
+
+.flex-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a, header a:hover, header a:active {
+    color: white;
+    text-decoration: none;
+}
+
+img {
+    margin: 10px;
+}
+
+li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 30pt;
+}
+
+h2 {
+    margin-bottom: 40px;
+    font-size: 25pt;
+}
+
+p {
+    font-size: 15pt;
+    margin-left: 30px;
+}
+
+.formula {
+    font-size: 15pt;
+    margin: auto;
+    width: 500px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+main li {
+    font-size: 14pt;
+}
+
+section ul {
+    margin-left: 30px;
+}
+
+h3 {
+    font-size: 20pt;
+}
+
+a.anchor-link {
+    display: block;
+    padding-top: 80px;
+    margin-top: -80px;
+	background-clip: content-box;
+}
