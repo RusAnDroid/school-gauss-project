@@ -16,7 +16,10 @@
                         <a href="#menu">Меню</a>
                     </li>
                     <li>
-                        <a href="#demonstration">Алгоритм Гаусса в действии</a>
+                        <a href="cramer_demonstration">Метод Крамера в действии</a>
+                    </li>
+                    <li>
+                        <a href="#gauss_demonstration">Метод Гаусса в действии</a>
                     </li>
                 </ul>
             </nav>
@@ -32,8 +35,7 @@
                     <li><a href="#definitions">Некоторые определения</a></li>
                     <li><a href="#properties">Свойства СЛАУ</a></li>
                     <li><a href="#school_methods">"Школьные" методы решения СЛАУ</a></li>
-                    <li><a href="#kramer_method">Решение СЛАУ методом Крамера</a></li>
-                    <li><a href="#reverse_matrix_method">Решение СЛАУ с помощью обратной матрицы</a></li>
+                    <li><a href="#cramer_method">Решение СЛАУ методом Крамера</a></li>
                     <li><a href="#gauss_method">Решение СЛАУ методом Гаусса</a></li>
                     <li><a href="#useful_links">Полезные ссылки</a></li>
                 </ol>
@@ -310,36 +312,57 @@
                     <b>Метод сложения</b>, хоть и <b>применим не всегда</b>, но здорово уменьшает количество и сложность вычислений (в сочетании с <b>методом подстановки</b>).
                 </p>
             </section>
+
             <section>
-                <a class="anchor-link" name="kramer_method"></a>
+                <a class="anchor-link"  name="cramer_method"></a>
                 <h2>Решение СЛАУ методом Крамера</h2>
                 
-            </section>
-            <section>
-                <a class="anchor-link"  name="gauss_method"></a>
-                <h2>Решение СЛАУ методом Гаусса</h2>
-                
-                <a class="anchor-link" name="demonstration"></a>
+                <a class="anchor-link" name="cramer_demonstration"></a>
                 <h3>Демонстрация</h3>
                 
                 <div class="small-container">
                     <div class="flex-block">
                         <div>
-                            <label for="eq_input">Количество уравнений</label>
+                            <label for="cramer_eq_input">Количество уравнений</label>
                             <br>
-                            <input type="number" placeholder="Number of equations" id="eq_input" min=1 value=0>
+                            <input type="number" placeholder="Number of equations" id="cramer_eq_input" min=1>
                         </div>
                         <div>
-                            <label for="var_input">Количество переменных</label>
+                            <label for="cramer_var_input">Количество переменных</label>
                             <br>
-                            <input type="number" placeholder="Number of varieties" id="var_input" min=1 value=0>
+                            <input type="number" placeholder="Number of varieties" id="cramer_var_input" min=1>
                         </div>
                     </div>
-                    <div id="div_eqs"></div>
-                    <button id="btn_count">Посчитать!</button>
+                    <div id="cramer_div_eqs"></div>
+                    <button id="cramer_btn_count">Посчитать!</button>
                 </div>
-            
             </section>
+
+            <section>
+                <a class="anchor-link"  name="gauss_method"></a>
+                <h2>Решение СЛАУ методом Гаусса</h2>
+                
+                <a class="anchor-link" name="gauss_demonstration"></a>
+                <h3>Демонстрация</h3>
+                
+                <div class="small-container">
+                    <div class="flex-block">
+                        <div>
+                            <label for="gauss_eq_input">Количество уравнений</label>
+                            <br>
+                            <input type="number" placeholder="Number of equations" id="gauss_eq_input" min=1 value="">
+                        </div>
+                        <div>
+                            <label for="gauss_var_input">Количество переменных</label>
+                            <br>
+                            <input type="number" placeholder="Number of varieties" id="gauss_var_input" min=1>
+                        </div>
+                    </div>
+                    <div id="gauss_div_eqs"></div>
+                    <button id="gauss_btn_count">Посчитать!</button>
+                </div>
+            </section>
+
             <section>
                 <a class="anchor-link" name="useful_links"></a>
                 <h2>Полезные ссылки</h2>
@@ -357,8 +380,10 @@
         </footer>
         
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
         <script src="scripts/gauss.js"></script>
+        <script src="scripts/cramer.js"></script>
+        <script src="scripts/main.js"></script>
         
     </body>
         
