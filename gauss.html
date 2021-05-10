@@ -50,19 +50,19 @@
                 <p>Я уверен, что в своей жизни все хоть раз решали линейные уравнения вида: </p>
                 
                 <div class="formula">
-                   <img src="img/1.png">
+                    \( ax + b = 0 \)
                 </div>
 
                 <p>Это линейное уравнение с одной переменной <b>x</b>. А теперь возьмём и добавим ещё одну переменную, получим:</p>
 
                 <div class="formula">
-                   <img src="img/2.png">
+                    \( ax + by + c = 0 \)
                 </div>
 
                 <p>И так до бесконечности. В общем виде это можно записать так:</p>
 
                 <div class="formula">
-                   <img src="img/3.png">
+                    \( a_{1}x_{1} + a_{2}x_{2} + ... + a_{n}x_{n} = b \)
                 </div>
                 
                 <p>   
@@ -71,16 +71,23 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/4.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            a_{11}x_{1} + a_{12}x_{2} + ... + a_{1n}x_{n} = b_{1} \\
+                            a_{21}x_{1} + a_{22}x_{2} + ... + a_{2n}x_{n} = b_{2} \\ 
+                            ... \\
+                            a_{m1}x_{1} + a_{m2}x_{2} + ... + a_{mn}x_{n} = b_{m}
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>   
                     Где <b>m</b> - количество уравнений; <b>n</b> - количество переменных; 
-                    <img src="img/vars.png" align="center">
+                    \( x_{1}, x_{2}, ..., x_{n} \)
                      - <b>переменные (неизвестные)</b>; 
-                    <img src="img/coefs.png" align="center"> 
-                    <b>(коэффициенты)</b> и 
-                    <img src="img/free_members.png" align="center">  
+                    \( a_{11}, a_{12}, ..., a_{1n}, a_{21}, ..., a_{mn} \; \) 
+                    <b>(коэффициенты)</b> и <span>    </span>
+                    \( b_{1}, b_{2}, ..., b_{n} \; \)
                     <b>(свободные члены)</b> - известные константы.
                 </p>
             </section>
@@ -123,7 +130,13 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/5.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            x + y + z = 10 \\
+                            x + y + 2z = 2 \\ 
+                            x - y - z = -4
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>
@@ -131,15 +144,21 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/6.png">
-                </div>
-                
-                <p>
-                    Упростим:
-                </p>
-                
-                <div class="formula">
-                   <img src="img/7.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            (y + z - 4) + y + z = 10 \\
+                            (y + z - 4) + y + 2z = 2 \\ 
+                            x = y + z - 4
+                        \end{array}\right.
+                        
+                        \qquad
+                        
+                        \left\{\begin{array}{l}
+                            2y + 2z = 14 \\
+                            2y + 3z = 6 \\ 
+                            x = y + z - 4
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>
@@ -147,27 +166,43 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/8.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            y = 7 - z \\
+                            2(7 - z) + 3z = 6 \\ 
+                            x = (7 - z) + z - 4
+                        \end{array}\right.
+                        
+                        \qquad
+                       
+                        \left\{\begin{array}{l}
+                            y = 7 - z \\
+                            z = -8 \\ 
+                            x = 3
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>
-                    Снова упростим:
+                    Наконец, подставим <b>z</b> в первое уравнение:
                 </p>
                 
                 <div class="formula">
-                   <img src="img/9.png">
-                </div>
-                
-                <p>
-                    Наконец, подставим z в первое уравнение:
-                </p>
-                
-                <div class="formula">
-                   <img src="img/10.png">
-                </div>
-                
-                <div class="formula">
-                   <img src="img/11.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            y = 7 - (-8) \\
+                            z = -8 \\ 
+                            x = 3
+                        \end{array}\right.
+                        
+                        \qquad
+                        
+                        \left\{\begin{array}{l}
+                            x = 3 \\
+                            y = 15 \\ 
+                            z = -8
+                        \end{array}\right.
+                    \)
                 </div>
                     
                 <h3>Метод сложения</h3>
@@ -182,7 +217,13 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/12.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            x + y + z = 10 \\
+                            x + y + 2z = 2 \\ 
+                            x - y - z = -4
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>
@@ -190,13 +231,13 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/13.png">
-                </div>
-                <div class="formula">
-                   <img src="img/14.png">
-                </div>
-                <div class="formula">
-                   <img src="img/15.png">
+                    \(
+                       \begin{array} {c}
+                        x + x + y + (-y) + z + (-z) = 10 + (-4) \\ \\
+                        2x = 6 \\ \\
+                        x = 3
+                       \end{array}
+                    \)
                 </div>
                 
                 <p>
@@ -204,7 +245,13 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/16.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            x + y + z = 10 \\
+                            x + y + 2z = 2 \\ 
+                            x = 3
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>
@@ -212,13 +259,29 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/17.png">
-                </div>
-                <div class="formula">
-                   <img src="img/18.png">
-                </div>
-                <div class="formula">
-                   <img src="img/19.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            -x - y - z = 10 \\
+                            x + y + 2z = 2 \\ 
+                            x = 3
+                        \end{array}\right.
+                        
+                        \qquad
+                        
+                        \left\{\begin{array}{l}
+                            -x - y - z = 10 \\
+                            x + (-x) + y + (-y) + 2z + (-z) = 2 + (-10) \\ 
+                            x = 3
+                        \end{array}\right.
+                        
+                        \qquad
+                        
+                        \left\{\begin{array}{l}
+                            x + y + z = 10 \\
+                            z = -8 \\ 
+                            x = 3
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>
@@ -226,14 +289,25 @@
                 </p>
                 
                 <div class="formula">
-                   <img src="img/20.png">
-                </div>
-                <div class="formula">
-                   <img src="img/21.png">
+                    \(
+                        \left\{\begin{array}{l}
+                            y = 10 - x - z \\
+                            z = -8 \\ 
+                            x = 3
+                        \end{array}\right.
+                        
+                        \qquad
+                        
+                        \left\{\begin{array}{l}
+                            x = 3 \\
+                            y = 15 \\ 
+                            z = -8
+                        \end{array}\right.
+                    \)
                 </div>
                 
                 <p>
-                    <b>Метод сложения</b>, хоть и <b>применим не всегда</b>, но здорово уменьшает количество и сложность вычислений.
+                    <b>Метод сложения</b>, хоть и <b>применим не всегда</b>, но здорово уменьшает количество и сложность вычислений (в сочетании с <b>методом подстановки</b>).
                 </p>
             </section>
             <section>
@@ -266,9 +340,12 @@
             <hr>
             <cite>&copy; Arkhangelsky Andrey, 2020-2021</cite>
         </footer>
-
+        
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
         <script src="scripts/gauss.js"></script>
+        
     </body>
-    
         
 </html>
