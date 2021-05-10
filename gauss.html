@@ -311,19 +311,34 @@
                 </p>
             </section>
             <section>
+                <a class="anchor-link" name="kramer_method"></a>
+                <h2>Решение СЛАУ методом Крамера</h2>
+                
+            </section>
+            <section>
                 <a class="anchor-link"  name="gauss_method"></a>
                 <h2>Решение СЛАУ методом Гаусса</h2>
                 
                 <a class="anchor-link" name="demonstration"></a>
                 <h3>Демонстрация</h3>
-                <p>
-                    <i>PS: код этой части есть, он рабочий, но выводит всё в консоль, так как я пока не определился, в каком виде хочу выводить результат на странице</i>
-                </p>
-                <input type="number" placeholder="Number of equations" id="eq_input" min=1 value=1>
-                <input type="number" placeholder="Number of varieties" id="var_input" min=1 value=1>
-                <button id="btn1">Let's go</button>
-                <div id="div_eqs"></div>
-                <button id="btn_count" disabled>Count</button>
+                
+                <div class="small-container">
+                    <div class="flex-block">
+                        <div>
+                            <label for="eq_input">Количество уравнений</label>
+                            <br>
+                            <input type="number" placeholder="Number of equations" id="eq_input" min=1 value=0>
+                        </div>
+                        <div>
+                            <label for="var_input">Количество переменных</label>
+                            <br>
+                            <input type="number" placeholder="Number of varieties" id="var_input" min=1 value=0>
+                        </div>
+                    </div>
+                    <div id="div_eqs"></div>
+                    <button id="btn_count">Посчитать!</button>
+                </div>
+            
             </section>
             <section>
                 <a class="anchor-link" name="useful_links"></a>
@@ -342,8 +357,7 @@
         </footer>
         
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
         <script src="scripts/gauss.js"></script>
         
     </body>

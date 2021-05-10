@@ -34,11 +34,6 @@ a {
     text-decoration: none;
 }
 
-input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 hr {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -46,11 +41,23 @@ hr {
 
 input {
     margin: 5px 5px 5px 0;
-    width: 50px;
+    min-width: 10px;
+}
+
+.small-input {
+    margin: 5px 5px 5px 0;
+    width: 35px;
 }
 
 .container {
     width: 90vw;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.small-container {
+    width: 60%;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
