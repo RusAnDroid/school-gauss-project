@@ -159,3 +159,11 @@ a.anchor-link {
     margin-top: -80px;
 	background-clip: content-box;
 }
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
