@@ -16,7 +16,6 @@ function create_mathjax_hint_element(letter, number1, sign_after) {
 
 function create_system_inputfield(eq_num, var_num, main_div) {
     main_div.innerHTML = "";
-    console.log("here");
     for (let i = 0; i < eq_num; i++) {
         let new_block = document.createElement("div");
         for (let j = 0; j < var_num - 1; j++) {

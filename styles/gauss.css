@@ -137,6 +137,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: serif;
     z-index: -2;
 }
 

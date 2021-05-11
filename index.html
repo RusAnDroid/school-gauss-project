@@ -16,10 +16,10 @@
                         <a href="#menu">Меню</a>
                     </li>
                     <li>
-                        <a href="cramer_demonstration">Метод Крамера в действии</a>
+                        <a href="#cramer_demonstration">Метод Крамера</a>
                     </li>
                     <li>
-                        <a href="#gauss_demonstration">Метод Гаусса в действии</a>
+                        <a href="#gauss_demonstration">Метод Гаусса</a>
                     </li>
                 </ul>
             </nav>
@@ -75,10 +75,10 @@
                 <div class="formula">
                     \(
                         \left\{\begin{array}{l}
-                            a_{11}x_{1} + a_{12}x_{2} + ... + a_{1n}x_{n} = b_{1} \\
-                            a_{21}x_{1} + a_{22}x_{2} + ... + a_{2n}x_{n} = b_{2} \\ 
+                            a_{1,1}x_{1} + a_{1,2}x_{2} + ... + a_{1,n}x_{n} = b_{1} \\
+                            a_{2,1}x_{1} + a_{2,2}x_{2} + ... + a_{2,n}x_{n} = b_{2} \\ 
                             ... \\
-                            a_{m1}x_{1} + a_{m2}x_{2} + ... + a_{mn}x_{n} = b_{m}
+                            a_{m,1}x_{1} + a_{m,2}x_{2} + ... + a_{m,n}x_{n} = b_{m}
                         \end{array}\right.
                     \)
                 </div>
@@ -87,7 +87,7 @@
                     Где <b>m</b> - количество уравнений; <b>n</b> - количество переменных; 
                     \( x_{1}, x_{2}, ..., x_{n} \)
                      - <b>переменные (неизвестные)</b>; 
-                    \( a_{11}, a_{12}, ..., a_{1n}, a_{21}, ..., a_{mn} \; \) 
+                    \( a_{1,1}, a_{1,2}, ..., a_{1,n}, a_{2,1}, ..., a_{m,n} \; \) 
                     <b>(коэффициенты)</b> и <span>    </span>
                     \( b_{1}, b_{2}, ..., b_{n} \; \)
                     <b>(свободные члены)</b> - известные константы.
@@ -324,10 +324,11 @@
                     <div>
                         <label for="cramer_eq_input">Количество уравнений и переменных</label>
                         <br>
-                        <input type="number" placeholder="Number of equations" id="cramer_num_input" min=1>
+                        <input type="number" placeholder="Количество переменных и уравнений" id="cramer_num_input" min=1>
                     </div>
                     <div id="cramer_div_eqs"></div>
                     <button id="cramer_btn_count">Посчитать!</button>
+                    <div id="cramer_visualization"></div>
                 </div>
             </section>
 
@@ -343,12 +344,12 @@
                         <div>
                             <label for="gauss_eq_input">Количество уравнений</label>
                             <br>
-                            <input type="number" placeholder="Number of equations" id="gauss_eq_input" min=1 value="">
+                            <input type="number" placeholder="Количество уравнений" id="gauss_eq_input" min=1 value="">
                         </div>
                         <div>
                             <label for="gauss_var_input">Количество переменных</label>
                             <br>
-                            <input type="number" placeholder="Number of varieties" id="gauss_var_input" min=1>
+                            <input type="number" placeholder="Количество переменных" id="gauss_var_input" min=1>
                         </div>
                     </div>
                     <div id="gauss_div_eqs"></div>
