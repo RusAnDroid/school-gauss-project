@@ -65,10 +65,6 @@ class CramersMethod extends BaseMethod {
         return answer;
     }
 
-    create_mathjax_hint_text(letter, number1, sign_after) {
-        return letter + "_{" + number1 + "}" + sign_after;
-    }
-
     get_jax_determinant(mtrx, detetminant, id) {
         let el = document.createElement("div");
         el.classList.add("formula");

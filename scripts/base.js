@@ -47,6 +47,10 @@ class BaseMethod {
         return false;
     }
 
+    create_mathjax_hint_text(letter, number1, sign_after) {
+        return letter + "_{" + number1 + "}" + sign_after;
+    }
+
     get_jax_initial_set(mtrx) {
         let el = document.createElement("div");
         el.classList.add("formula");
@@ -55,11 +59,11 @@ class BaseMethod {
             el.innerHTML += "\\left\\{\\begin{array}{l}";
             for (let i = 0; i < mtrx.length; i += 1) {
                 if (this.check_coef_arr(mtrx[i])) {
-                    for (let j = 0; j < mtrx.length - 1; j += 1) {
+                    for (let j = 0; j < mtrx[i].length - 2; j += 1) {
                         if (mtrx[i][j] != 0) {
                             if (el.innerHTML[el.innerHTML.length - 1] == '+' && mtrx[i][j] < 0) {
                                 el.innerHTML = el.innerHTML.substr(0, el.innerHTML.length - 1);
-                            el.innerHTML += '-';
+                                el.innerHTML += '-';
                             }
                             if (mtrx[i][j] != 1) {
                                 el.innerHTML += "" + Math.abs(mtrx[i][j]);
@@ -67,20 +71,20 @@ class BaseMethod {
                             el.innerHTML += this.create_mathjax_hint_text('x', j + 1, '+');
                         }
                     }
-                    if (mtrx[i][mtrx.length - 1] != 0) {
-                        if (el.innerHTML[el.innerHTML.length - 1] == '+' && mtrx[i][mtrx.length - 1] < 0) {
+                    if (mtrx[i][mtrx[i].length - 2] != 0) {
+                        if (el.innerHTML[el.innerHTML.length - 1] == '+' && mtrx[i][mtrx[i].length - 2] < 0) {
                             el.innerHTML = el.innerHTML.substr(0, el.innerHTML.length - 1);
                             el.innerHTML += '-';
                         }
-                        if (mtrx[i][mtrx.length - 1] != 1) {
-                            el.innerHTML += "" + Math.abs(mtrx[i][mtrx.length - 1]);
+                        if (mtrx[i][mtrx[i].length - 2] != 1) {
+                            el.innerHTML += "" + Math.abs(mtrx[i][mtrx[i].length - 2]);
                         }
-                        el.innerHTML += this.create_mathjax_hint_text('x', mtrx.length, '=');
+                        el.innerHTML += this.create_mathjax_hint_text('x', mtrx[i].length - 1, '=');
                     } else {
                         el.innerHTML = el.innerHTML.substr(0, el.innerHTML.length - 1)
                         el.innerHTML += "=";
                     }
-                    el.innerHTML += "" + mtrx[i][mtrx.length];
+                    el.innerHTML += "" + mtrx[i][mtrx[i].length - 1];
                 }
                 if (i < mtrx.length - 1) {
                     el.innerHTML += "\\" + "\\";

@@ -17,10 +17,10 @@ class GaussMethod extends BaseMethod {
             return;
         }
         let cur_id = step;
-        while (cur_id < this.mtrx.length && this.mtrx[cur_id][id] == 0) {
+        while (cur_id < this.mtrx.length && this.mtrx[cur_id][step] == 0) {
             cur_id += 1;
         }
-        if (cur_if < this.mtrx.length) {
+        if (cur_id < this.mtrx.length) {
             let tmp = this.mtrx[cur_id];
             this.mtrx[cur_id] = this.mtrx[step];
             this.mtrx[step] = tmp;
@@ -59,37 +59,50 @@ class GaussMethod extends BaseMethod {
         return true;
     }
 
+    count_non_zero_coefs(string_id) {
+        let cnt_non_zero = 0;
+        for (let j = 0; j < this.mtrx[string_id].length - 1; j += 1) {
+            if (this.mtrx[string_id][j] != 0) {
+                cnt_non_zero += 1;
+            }
+        }
+        return cnt_non_zero;
+    }
+
     check_infinite_solutions() {
-        let cnt_no_zero = 0;
         let flag = true;
         for (let i = 0; i < this.mtrx.length; i += 1) {
-            cnt_no_zero = 0;
-            for (let j = 0; j < this.mtrx[i].length - 1; j += 1) {
-                if (this.mtrx[i][j] != 0) {
-                    cnt_no_zero += 1;
-                }
-            }
-            if (cnt_no_zero == 1) {
+            if (this.count_non_zero_coefs(i) == 1) {
                 flag = false;
             }
         }
         return flag;
     }
 
-    step_forward_movement(step) {
+    add_new_set_to_render() {
+        this.render_div.appendChild(this.get_jax_initial_set(this.mtrx));
+    }
+
+    add_initial_set_to_render() {
+        this.render_div.innerHTML = "";
+        this.add_new_set_to_render(this.mtrx);
+    }
+
+    step_forward(step) {
         this.delete_zero_strings();
         this.swap_strings_if_zero(step);
         for (let i = step + 1; i < this.mtrx.length; i += 1) {
             this.refactor_string(i, step);
         }
         this.delete_zero_strings();
+        this.add_new_set_to_render();
         return this.check_no_solutions();
     }
 
     move_forward() {
         let step = 0;
-        while (step < this.mtrx.length) {
-            let has_solution = this.step_forward_movement(step);
+        while (step < this.mtrx.length - 1) {
+            let has_solution = this.step_forward(step);
             if (!has_solution) {
                 return 0; // no solutions
             }
@@ -112,9 +125,11 @@ class GaussMethod extends BaseMethod {
                 }
             }
             if (cnt_no_zero == 1) {
+                this.mtrx[i][this.mtrx[i].length - 1] = this.mtrx[i][this.mtrx[i].length - 1] / this.mtrx[i][id];
+                this.mtrx[i][id] = 1;
                 return { 
                     "id": id,
-                    "value": this.mtrx[i][this.mtrx[i].length - 1] / this.mtrx[i][id]
+                    "value": this.mtrx[i][this.mtrx[i].length - 1]
                 };
             }
         }
@@ -122,21 +137,28 @@ class GaussMethod extends BaseMethod {
 
     replace_var_with_zero(id, value) {
         for (let i = 0; i < this.mtrx.length; i += 1) {
-            this.mtrx[i][this.mtrx[i].length - 1] -= this.mtrx[i][id] * value;
-            this.mtrx[i][id] = 0;
+            if (this.count_non_zero_coefs(i) > 1) {
+                this.mtrx[i][this.mtrx[i].length - 1] -= this.mtrx[i][id] * value;
+                this.mtrx[i][id] = 0;
+            }
         }
     }
 
     move_back() {
         let answers = [];
         answers.length = this.var_num;
-        for (let i = 0; i < this.var_num; i += 1) {
+        for (let i = 0; i < this.var_num - 1; i += 1) {
             let obj_var = this.get_single_var_id();
             answers[obj_var.id] = round_mod(obj_var.value, GaussMethod.percision_number);
             this.replace_var_with_zero(obj_var.id, answers[obj_var.id]);
             this.delete_zero_strings();
+            this.add_new_set_to_render(this.mtrx);
         }
         return answers;
+    }
+
+    move_back_common_solution() {
+
     }
 
     calculate() {
@@ -148,13 +170,18 @@ class GaussMethod extends BaseMethod {
             console.log(this.move_back());
         }
         if (status == 2) {
-            // TODO
+            console.log(this.move_back_common_solution());
         }
     }
 
+    render() {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "this.render_div"]);
+    }
+
     run() {
-        console.log(this.mtrx)
+        this.add_initial_set_to_render();
         this.calculate();
+        this.render();
     }
 }
 
