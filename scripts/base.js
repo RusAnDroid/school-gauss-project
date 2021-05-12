@@ -1,5 +1,11 @@
 'use strict';
 
+function round_mod(value, precision)
+{
+    let precision_number = Math.pow(10, precision);
+    return Math.round(value * precision_number) / precision_number;
+}
+
 class BaseMethod {
     set_matrix() {
         this.mtrx = [];
@@ -21,6 +27,24 @@ class BaseMethod {
         this.eqs_div = document.documentElement.querySelector("#" + eqs_div_id);
         this.render_div = document.documentElement.querySelector("#" + div_to_show_id);
         this.set_matrix();
+    }
+
+    check_coef_arr(arr) {
+        for (let i = 0; i < arr.length - 1; i += 1) {
+            if (arr[i] != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    check_coef_mtrx(mtrx) {
+        for (let i = 0; i < mtrx.length - 1; i += 1) {
+            if (this.check_coef_arr(mtrx[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     get_jax_initial_set(mtrx) {

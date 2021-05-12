@@ -52,5 +52,5 @@ document.documentElement.querySelector("#cramer_num_input").addEventListener("in
     create_system_inputfield(eq_num, var_num, main_div);
 });                                                   
 
-//document.documentElement.querySelector("#gauss_btn_count").addEventListener("click", calculate);
+document.documentElement.querySelector("#gauss_btn_count").addEventListener("click", gauss_method);
 document.documentElement.querySelector("#cramer_btn_count").addEventListener("click", cramer_method);

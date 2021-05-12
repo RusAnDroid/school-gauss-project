@@ -68,24 +68,6 @@ class CramersMethod extends BaseMethod {
     create_mathjax_hint_text(letter, number1, sign_after) {
         return letter + "_{" + number1 + "}" + sign_after;
     }
-    
-    check_coef_arr(arr) {
-        for (let i = 0; i < arr.length - 1; i += 1) {
-            if (arr[i] != 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    check_coef_mtrx(mtrx) {
-        for (let i = 0; i < mtrx.length - 1; i += 1) {
-            if (this.check_coef_arr(mtrx[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     get_jax_determinant(mtrx, detetminant, id) {
         let el = document.createElement("div");
