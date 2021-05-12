@@ -85,6 +85,8 @@ class BaseMethod {
                         el.innerHTML += "=";
                     }
                     el.innerHTML += "" + mtrx[i][mtrx[i].length - 1];
+                } else if (mtrx[i][mtrx[i].length - 1] != 0) {
+                    el.innerHTML += "\\color{red}{0 = " + mtrx[i][mtrx[i].length - 1] + "}";
                 }
                 if (i < mtrx.length - 1) {
                     el.innerHTML += "\\" + "\\";

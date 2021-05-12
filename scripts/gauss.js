@@ -5,7 +5,7 @@ class GaussMethod extends BaseMethod {
     delete_zero_strings() {
         let new_mtrx = [];
         for (let i = 0; i < this.mtrx.length; i += 1) {
-            if (this.check_coef_arr(this.mtrx[i])) {
+            if (this.check_coef_arr(this.mtrx[i]) || this.mtrx[i][this.mtrx[i].length - 1] != 0) {
                 new_mtrx.push(this.mtrx[i]);
             }
         }
@@ -157,20 +157,23 @@ class GaussMethod extends BaseMethod {
         return answers;
     }
 
-    move_back_common_solution() {
-
+    add_warning_to_render(text) {
+        let el = document.createElement("div");
+        el.classList.add("formula");
+        el.innerHTML = text;
+        this.render_div.appendChild(el);
     }
 
     calculate() {
         let status = this.move_forward();
         if (status == 0) {
-            // TODO
+            this.add_warning_to_render("Система несовместна");
         }
         if (status == 1) {
-            console.log(this.move_back());
+            this.move_back();
         }
         if (status == 2) {
-            console.log(this.move_back_common_solution());
+            this.add_warning_to_render("Система имеет бесконечное множество решений");
         }
     }
 
