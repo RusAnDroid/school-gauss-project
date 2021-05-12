@@ -28,6 +28,9 @@ class GaussMethod extends BaseMethod {
     }
 
     refactor_string(cur_string, base_string) {
+        if (this.mtrx[cur_string][base_string] == 0) {
+            return;
+        } 
         let multiplier = (-1) * (this.mtrx[cur_string][base_string] / this.mtrx[base_string][base_string]);
         for (let i = base_string; i < this.mtrx[cur_string].length; i += 1) {
             this.mtrx[cur_string][i] += multiplier * this.mtrx[base_string][i];
