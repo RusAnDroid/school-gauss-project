@@ -120,22 +120,33 @@ class GaussMethod extends BaseMethod {
     get_single_var_id() {
         let id = -1;
         for (let i = 0; i < this.mtrx.length; i += 1) {
-            let cnt_no_zero = 0;
+            let cnt_non_zero = 0;
             for (let j = 0; j < this.mtrx[i].length - 1; j += 1) {
                 if (this.mtrx[i][j] != 0) {
-                    cnt_no_zero += 1;
+                    cnt_non_zero += 1;
                     id = j;
                 }
             }
-            if (cnt_no_zero == 1) {
+            console.log(i, cnt_non_zero, this.mtrx);
+            if (cnt_non_zero == 1 && !this.used[id]) {
                 this.mtrx[i][this.mtrx[i].length - 1] = this.mtrx[i][this.mtrx[i].length - 1] / this.mtrx[i][id];
                 this.mtrx[i][id] = 1;
+                this.used[id] = true;
                 return { 
                     "id": id,
                     "value": this.mtrx[i][this.mtrx[i].length - 1]
                 };
             }
         }
+    }
+
+    check_used() {
+        for (let i = 0; i < this.mtrx.length; i += 1) {
+            if (!this.used[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     replace_var_with_zero(id, value) {
@@ -147,10 +158,19 @@ class GaussMethod extends BaseMethod {
         }
     }
 
+    create_used_array() {
+        this.used = [];
+        for (let i = 0; i < this.mtrx.length; i += 1) {
+            this.used.push(false);
+        }
+    }
+
     move_back() {
         let answers = [];
+        console.log(this.mtrx);
         answers.length = this.var_num;
-        for (let i = 0; i < this.var_num - 1; i += 1) {
+        this.create_used_array();
+        while (this.check_used()) {
             let obj_var = this.get_single_var_id();
             answers[obj_var.id] = round_mod(obj_var.value, GaussMethod.percision_number);
             this.replace_var_with_zero(obj_var.id, answers[obj_var.id]);
