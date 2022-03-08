@@ -54,5 +54,15 @@ document.documentElement.querySelector("#cramer_num_input").addEventListener("in
     create_system_inputfield(eq_num, var_num, main_div);
 });                                                   
 
+document.documentElement.querySelector("#matrix_num_input").addEventListener("input", function() {
+    let var_num = +document.documentElement.querySelector("#matrix_num_input").value;
+    let main_div = document.documentElement.querySelector("#matrix_div_eqs");
+    let eq_num = var_num;
+    create_system_inputfield(eq_num, var_num, main_div);
+}); 
+
 document.documentElement.querySelector("#gauss_btn_count").addEventListener("click", gauss_method);
+
 document.documentElement.querySelector("#cramer_btn_count").addEventListener("click", cramer_method);
+
+document.documentElement.querySelector("#matrix_btn_count").addEventListener("click", matrix_method);

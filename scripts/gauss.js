@@ -127,7 +127,6 @@ class GaussMethod extends BaseMethod {
                     id = j;
                 }
             }
-            console.log(i, cnt_non_zero, this.mtrx);
             if (cnt_non_zero == 1 && !this.used[id]) {
                 this.mtrx[i][this.mtrx[i].length - 1] = this.mtrx[i][this.mtrx[i].length - 1] / this.mtrx[i][id];
                 this.mtrx[i][id] = 1;
@@ -167,7 +166,6 @@ class GaussMethod extends BaseMethod {
 
     move_back() {
         let answers = [];
-        console.log(this.mtrx);
         answers.length = this.var_num;
         this.create_used_array();
         while (this.check_used()) {

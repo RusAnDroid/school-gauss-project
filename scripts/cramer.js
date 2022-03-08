@@ -2,6 +2,10 @@
 
 class CramersMethod extends BaseMethod {
     get_determinant(mtrx) {
+        if (mtrx.length == 1) {
+            return mtrx[0][0];
+        }
+        
         if (mtrx.length == 2) {
             return mtrx[0][0] * mtrx[1][1] - mtrx[0][1] * mtrx[1][0];
         }
