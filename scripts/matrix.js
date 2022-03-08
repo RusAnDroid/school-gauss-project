@@ -206,7 +206,7 @@ class MatrixMethod extends CramersMethod {
         el.classList.add("formula");
         el.innerHTML = "\\("
         
-        el.innerHTML += "M^{-1} = \\frac{1}{\\Delta} \\cdot (С^{*})^{T} = ";
+        el.innerHTML += "A^{-1} = \\frac{1}{\\Delta} \\cdot (С^{*})^{T} = ";
         el.innerHTML += "\\frac{1}{" + main_determinant + "} \\cdot";
         el.innerHTML += this.get_jax_pmtrx_string(transposed_adjugate_mtrx) + "=";
         el.innerHTML += this.get_jax_reversed_mtrx_string(transposed_adjugate_mtrx, main_determinant);
@@ -220,9 +220,9 @@ class MatrixMethod extends CramersMethod {
         el.classList.add("formula");
         el.innerHTML = "\\("
         
-        el.innerHTML += "X = M^{-1} \\cdot B = ";
+        el.innerHTML += "X = A^{-1} \\cdot B = ";
         el.innerHTML += this.get_jax_reversed_mtrx_string(transposed_adjugate_mtrx, main_determinant);
-        el.innerHTML += "\\cdot";
+        el.innerHTML += "\\times";
         el.innerHTML += this.get_jax_pmtrx_string(free_terms_arr);
         el.innerHTML += "=";
         el.innerHTML += this.get_jax_pmtrx_string(answers_arr);

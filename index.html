@@ -8,21 +8,15 @@
 
     <body>
         <header class="flex-block">
-            <nav class="container flex-block">
+            <div class="nav container flex-block">
                 <a href="#">Arkhangelsky</a>
 
                 <ul class="flex-block">
                     <li>
                         <a href="#menu">Меню</a>
                     </li>
-                    <li>
-                        <a href="#cramer_demonstration">Метод Крамера</a>
-                    </li>
-                    <li>
-                        <a href="#gauss_demonstration">Метод Гаусса</a>
-                    </li>
                 </ul>
-            </nav>
+            </div>
         </header>
 
         <main class="container">
@@ -36,6 +30,7 @@
                     <li><a href="#properties">Свойства СЛАУ</a></li>
                     <li><a href="#school_methods">"Школьные" методы решения СЛАУ</a></li>
                     <li><a href="#cramer_method">Решение СЛАУ методом Крамера</a></li>
+                    <li><a href="#matrix_method">Решение СЛАУ методом обратной матрицы</a></li>
                     <li><a href="#gauss_method">Решение СЛАУ методом Гаусса</a></li>
                     <li><a href="#conclusion">Послесловие</a></li>
                     <li><a href="#useful_links">Полезные ссылки</a></li>
@@ -498,6 +493,315 @@
                     <div id="cramer_visualization"></div>
                 </div>
             </section>
+            
+            <section>
+                <a class="anchor-link"  name="matrix_method"></a>
+                <h2>Решение СЛАУ методом обратной матрицы</h2>
+                
+                <p>
+                    Есть ещё один интересный метод, который позволяет получить <b>матрицу ответов</b> лишь несколькими опеарциями с матрицами.
+                    Это <b>метод обратной матрицы</b>. Однако, он имеет те же недочёты, что и метод Крамера, да и на первый взгляд кажется сложнее.
+                    Но о нём стоит рассказать. 
+                </p>
+                
+                <p>
+                    Итак, у нас есть СЛАУ. Напомню, что для этого метода количество уравнений должно равняться количеству переменных. 
+                    И <b>главный определитель</b> должен быть не равен нулю. Возьмём, допустим, систему с 3 переменными, чтоб посложнее.
+                </p>
+                
+                <div class="formula">
+                    \(
+                        \left\{\begin{array}{l}
+                            3x + 2y - z = 4 \\
+                            2x - y + 5z = 23 \\ 
+                            x + 7y - z = 5
+                        \end{array}\right.
+                    \)
+                </div>
+                
+                <p>
+                    Для начала посчитаем <b>главный определитель</b>. Благо, делать мы это уже умеем.
+                </p>
+                
+                <div class="formula">
+                    \(
+                        \Delta =
+                        \begin{vmatrix}
+                            3 & 3 & -1\\
+                            2 & -1 & 5\\
+                            1 & 7 & -1
+                        \end{vmatrix}
+                        = 3 - 14 + 10 - 1 - 105 + 4 = -103
+                    \)
+                </div>
+                
+                <p>
+                    Далее, нам понадобятся 2 новых определения. 
+                    <b>Минор матрицы</b> - определитель квадратной матрицы, полученной вычёркиванием некоторых строк и столбцов из исходной. 
+                    Мы же будем вычёркивать одну строку (строку \( i \)) и один столбец (столбец \( j \)).
+                    Второе определение - алгебраическое дополнение. <b>Алгебраическим дополнением элемента</b> \( a_{i, j} \) называют число:
+                </p>
+                
+                <div class="formula">
+                    \(
+                        A_{i, j} = (-1)^{i + j} \cdot M_{i,j}
+                    \)
+                </div>
+                
+                
+                <p>
+                    Где \( M_{i, j} \) - минор матрицы, полученный в результате вычёркивания строки \( i \) и столбца \( j \).
+                </p>
+                
+                <p>    
+                    Итак, следуюий шаг в решении СЛАУ методом обратной матрицы - нахождение <b>алгебраических дополнений</b> для всех элементов.
+                </p>
+                
+                <div class="formula">
+                    \(
+                        A_{1, 1} = (-1)^{1 + 1} \cdot
+                        \begin{vmatrix}
+                            -1 & 5\\
+                            7 & -1
+                        \end{vmatrix}
+                        = -34
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{1, 2} = (-1)^{1 + 2} \cdot
+                        \begin{vmatrix}
+                            2 & 5\\
+                            1 & -1
+                        \end{vmatrix}
+                        = 7
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{1, 3} = (-1)^{1 + 3} \cdot
+                        \begin{vmatrix}
+                            2 & -1\\
+                            1 & 7
+                        \end{vmatrix}
+                        = 15
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{2, 1} = (-1)^{2 + 1} \cdot
+                        \begin{vmatrix}
+                            2 & -1 \\
+                            7 & -1
+                        \end{vmatrix}
+                        = -5
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{2, 2} = (-1)^{2 + 2} \cdot
+                        \begin{vmatrix}
+                            3 & -1 \\
+                            1 & -1
+                        \end{vmatrix}
+                        = -2
+                    \)   
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{2, 3} = (-1)^{2 + 3} \cdot
+                        \begin{vmatrix}
+                            3 & 2 \\
+                            1 & 7
+                        \end{vmatrix}
+                        = -19
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{3, 1} = (-1)^{3 + 1} \cdot
+                        \begin{vmatrix}
+                            2 & -1 \\
+                            -1 & 5
+                        \end{vmatrix}
+                        = 9
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{3, 2} = (-1)^{3 + 2} \cdot
+                        \begin{vmatrix}
+                            3 & -1 \\
+                            2 & 5
+                        \end{vmatrix}
+                        = -17
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A_{3, 3} = (-1)^{3 + 3} \cdot
+                        \begin{vmatrix}
+                            3 & 2 \\
+                            2 & -1
+                        \end{vmatrix}
+                        = -7
+                    \)
+                </div>
+                
+                <p>
+                    Далее составим матрицу из этих <b>алгебраических дополнений</b> (такая матрица называется <b>присоединённой</b>)
+                </p>
+                
+                <div class="formula">
+                    \(
+                        C^{*} =
+                        \begin{pmatrix}
+                            -34 & 7 & 15 \\
+                            -5 & -2 & -19 \\
+                            9 & -17 & -7
+                        \end{pmatrix}
+                    \)
+                </div>
+                
+                <p>
+                    Следующее действие, которое нам нужно сделать, - эту <b>присоединённую матрицу транспонировать</b>.
+                    <b>Транспонировать матрицу</b> - это значит её "повернуть" так, чтоб строки стали столбцами, а столбцы - строками.
+                </p>
+                
+                <div class="formula">
+                    \(
+                        (C^{*})^{T} =
+                        \begin{pmatrix}
+                            -34 & -5 & 9 \\
+                            7 & -2 & -17 \\
+                            15 & -19 & -7
+                        \end{pmatrix}
+                    \)
+                </div>
+                
+                <p>
+                    Далее нам нужно посчитать так называемую <b>обратную матрицу</b>. Её определение можете понять прямо из формулы:
+                </p>
+                
+                <div class="formula">
+                    \(
+                        A^{-1} = \frac{1}{\Delta} \cdot (C^{*})^{T}
+                    \)
+                </div>
+                
+                <div class="formula">
+                    \(
+                        A^{-1} =
+                        \frac{1}{-103} \cdot
+                        \begin{pmatrix}
+                            -34 & -5 & 9 \\
+                            7 & -2 & -17 \\
+                            15 & -19 & -7
+                        \end{pmatrix} = 
+                        \begin{pmatrix}
+                            \frac{34}{103} & \frac{5}{103} & -\frac{9}{103} \\
+                            -\frac{7}{103} & \frac{2}{103} & \frac{17}{103} \\
+                            -\frac{15}{103} & \frac{19}{103} & \frac{7}{103}
+                        \end{pmatrix}
+                    \)
+                </div>
+                
+                <p> 
+                    Последний шаг - умножить <b>обратную матрицу</b> на столбец <b>свободных членов</b>. Но вот незадача: мы не умеем умножать матрицы.
+                    Что ж, это не так сложно. Чтобы <b>перемножить две матрицы</b> количесвто <b>строк</b> в одной должно совпадать с количеством
+                    <b>столбцов</b> в другой. Далее нужно просто <b>просуммировать попарные произведения</b> элементов первой строки одной матрицы и первого столбца второй матрицы
+                    и записать результат на место первого элемента итоговой матрицы. Затем перемножаем уже первую строку и второй столбец... И так далее:
+                </p>
+                
+                <div class="formula">
+                    \(
+                        A \cdot B =
+                        \begin{pmatrix}
+                            a_{1,1} & a_{1,2} & a_{1,3} \\
+                            a_{2,1} & a_{2,2} & a_{2,3} \\
+                        \end{pmatrix}
+                        \times
+                        \begin{pmatrix}
+                            b_{1,1} & b_{1,2} \\
+                            b_{2,1} & b_{2,2} \\
+                            b_{3,1} & b_{3, 2}
+                        \end{pmatrix}
+                        =
+                        \begin{pmatrix}
+                            a_{1,1} \cdot b_{1,1} + a_{1,2} \cdot b_{2,1} + a_{1,3} \cdot b_{3,1} & a_{1,1} \cdot b_{1,2} + a_{1,2} \cdot b_{2,2} + a_{1,3} \cdot b_{3,2} \\
+                            a_{2,1} \cdot b_{1,1} + a_{2,2} \cdot b_{2,1} + a_{2,3} \cdot b_{3,1} & a_{2,1} \cdot b_{1,2} + a_{2,2} \cdot b_{2,2} + a_{2,3} \cdot b_{3,2} \\
+                        \end{pmatrix}
+                    \)
+                </div>
+                
+                <p>
+                    Таким образом, на последнем шаге мы получим:
+                </p>
+                
+                <div class="formula">
+                    \(
+                        X = A^{-1} \cdot B=
+                        \begin{pmatrix}
+                            \frac{34}{103} & \frac{5}{103} & -\frac{9}{103} \\
+                            -\frac{7}{103} & \frac{2}{103} & \frac{17}{103} \\
+                            -\frac{15}{103} & \frac{19}{103} & \frac{7}{103}
+                        \end{pmatrix}
+                        \times
+                        \begin{pmatrix}
+                            4 \\
+                            23 \\
+                            5
+                        \end{pmatrix}
+                        =
+                        \begin{pmatrix}
+                            2 \\
+                            1 \\
+                            4
+                        \end{pmatrix}
+                    \)
+                </div>
+                
+                <p>
+                    То есть:
+                </p>
+                
+                <div class="formula">
+                    \(
+                        \left\{\begin{array}{l}
+                            x = 2 \\
+                            y = 1 \\ 
+                            z = 4
+                        \end{array}\right.
+                    \)
+                </div>
+                
+                <p>
+                    Вновь предлагаю вам поиграть с онлайн-калькулятором для закрепелния материала.
+                </p>
+                
+                <a class="anchor-link" name="matrix_demonstration"></a>
+                <h3>Демонстрация</h3>
+
+                    <div class="small-container">
+                    <div>
+                        <label for="matrix_num_input">Количество уравнений и переменных</label>
+                        <br>
+                        <input type="number" placeholder="Количество переменных и уравнений" id="matrix_num_input" min=1>
+                    </div>
+                    <div id="matrix_div_eqs"></div>
+                    <button id="matrix_btn_count">Посчитать!</button>
+                    <div id="matrix_visualization"></div>
+                </div>
+                
+            </section>
 
             <section>
                 <a class="anchor-link"  name="gauss_method"></a>
@@ -700,8 +1004,7 @@
                 <h2>Послесловие</h2>
                 <p>
                     Естественно, это далеко не все способы решение СЛАУ. 
-                    Есть, например, метод обратной матрицы, который я не стал здесь приводить, так как он сложнее для понимания, но по возможностям уступает методу Гаусса.
-                    И, разумеется, ещё множество других. Но рассмотренные мною способы являются базовыми. 
+                    Есть и более сложные, требующие знаний высшей математики. Но рассмотренные мною способы являются базовыми. 
                 </p>
             </section>
 
@@ -713,6 +1016,7 @@
                     <li><a href="https://externat.foxford.ru/polezno-znat/wiki-algebra-metody-resheniya-sistem-linejnyh-uravnenij" target="_blank">Статья про решения СЛАУ на Фоксфорде</a></li>
                     <li><a href="https://ru.wikipedia.org/wiki/Система_линейных_алгебраических_уравнений" target="_blank">Статья про системы линейных уравнений в Википедии</a></li>
                     <li><a href="https://ru.wikipedia.org/wiki/Метод_Крамера" target="_blank">Статья про метод Крамера на Википедии</a></li>
+                    <li><a href="https://ru.wikipedia.org/wiki/Матричный_метод" target="_blank">Статья про метод обратной матрицы на Википедии</a></li>
                     <li><a href="https://ru.wikipedia.org/wiki/Метод_Гаусса" target="_blank">Статья про метод Гаусса на Википедии</a></li>
                 </ul>
             </section>
@@ -728,6 +1032,7 @@
         <script src="scripts/base.js"></script>
         <script src="scripts/gauss.js"></script>
         <script src="scripts/cramer.js"></script>
+        <script src="scripts/matrix.js"></script>
         <script src="scripts/main.js"></script>
         
     </body>

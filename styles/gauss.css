@@ -84,13 +84,9 @@ header a:visited, header a:hover, header a:active, headr a, header a:focus {
     text-decoration: none;
 }
 
-nav a:visited, nav a:hover, nav a:active, nav a, nav a:focus {
+.nav a:visited, .nav a:hover, .nav a:active, .nav a, .nav a:focus {
     color: inherit;
     text-decoration: none;
-}
-
-header ul.flex-block {
-    min-width: 500px;
 }
 
 .flex-block {
