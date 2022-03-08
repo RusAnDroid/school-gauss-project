@@ -109,10 +109,177 @@ class MatrixMethod extends CramersMethod {
         }
     }
     
+    get_jax_mtrx_inner(mtrx) {
+        let str = "";
+        
+        for (let i = 0; i < mtrx.length; i += 1) {
+            for (let j = 0; j < mtrx[i].length; j += 1) {
+                str += mtrx[i][j];
+                
+                if (j < mtrx[i].length - 1) {
+                    str += "&";
+                }
+            }
+            if (i < mtrx.length - 1) {
+                str += "\\" + "\\";
+            }
+        }
+        
+        return str;
+    }
+    
+    get_jax_vmtrx_string(mtrx) {
+        let str = "\\begin{vmatrix}";
+        
+        str += this.get_jax_mtrx_inner(mtrx);
+        
+        str += "\\end{vmatrix}";
+        
+        return str;
+    }
+    
+    get_jax_pmtrx_string(mtrx) {
+        let str = "\\begin{pmatrix}";
+        
+        str += this.get_jax_mtrx_inner(mtrx);
+        
+        str += "\\end{pmatrix}";
+        
+        return str;
+    }
+    
+    get_jax_algebraic_complement(row, col, minors_arr) {
+        let el = document.createElement("div");
+        el.classList.add("formula");
+        el.innerHTML = "\\(A_{" + (row + 1) + "," + (col + 1) + "} = ";
+        el.innerHTML += "(-1)^{" + (row + 1) + "+" + (col + 1) + "} \\cdot"
+        
+        let minors_mtrxs = minors_arr[1];
+        el.innerHTML += this.get_jax_vmtrx_string(minors_mtrxs[row][col]);
+        
+        el.innerHTML += "=" + minors_arr[0][row][col];
+        el.innerHTML += "\\)";
+        
+        return el;
+    }
+    
+    get_jax_adjugate_mtrx(adjugate_mtrx) {
+        let el = document.createElement("div");
+        el.classList.add("formula");
+        el.innerHTML = "\\( С^{*} = ";
+        el.innerHTML += this.get_jax_pmtrx_string(adjugate_mtrx);
+        el.innerHTML += "\\)";
+        return el;
+    }
+    
+    get_jax_transposed_adjugate_mtrx(transposed_adjugate_mtrx) {
+        let el = document.createElement("div");
+        el.classList.add("formula");
+        el.innerHTML = "\\( (С^{*})^{T} = ";
+        el.innerHTML += this.get_jax_pmtrx_string(transposed_adjugate_mtrx);
+        el.innerHTML += "\\)";
+        return el;
+    }
+    
+    get_jax_reversed_mtrx_string(reversed_mtrx, main_determinant) {
+        let str = "\\begin{pmatrix}";
+        
+        for (let i = 0; i < reversed_mtrx.length; i += 1) {
+            for (let j = 0; j < reversed_mtrx[i].length; j += 1) {
+                str += "\\frac{" + reversed_mtrx[i][j] + "}{" + main_determinant + "}";
+                
+                if (j < reversed_mtrx[i].length - 1) {
+                    str += "&";
+                }
+            }
+            if (i < reversed_mtrx.length - 1) {
+                str += "\\" + "\\";
+            }
+        }
+        
+        str += "\\end{pmatrix}";
+        return str;
+    }
+    
+    get_jax_reversed_mtrx(transposed_adjugate_mtrx, main_determinant) {
+        let el = document.createElement("div");
+        el.classList.add("formula");
+        el.innerHTML = "\\("
+        
+        el.innerHTML += "M^{-1} = \\frac{1}{\\Delta} \\cdot (С^{*})^{T} = ";
+        el.innerHTML += "\\frac{1}{" + main_determinant + "} \\cdot";
+        el.innerHTML += this.get_jax_pmtrx_string(transposed_adjugate_mtrx) + "=";
+        el.innerHTML += this.get_jax_reversed_mtrx_string(transposed_adjugate_mtrx, main_determinant);
+        
+        el.innerHTML += "\\)";
+        return el;
+    }
+    
+    get_jax_answer(transposed_adjugate_mtrx, main_determinant, free_terms_arr, answers_arr) {
+        let el = document.createElement("div");
+        el.classList.add("formula");
+        el.innerHTML = "\\("
+        
+        el.innerHTML += "X = M^{-1} \\cdot B = ";
+        el.innerHTML += this.get_jax_reversed_mtrx_string(transposed_adjugate_mtrx, main_determinant);
+        el.innerHTML += "\\cdot";
+        el.innerHTML += this.get_jax_pmtrx_string(free_terms_arr);
+        el.innerHTML += "=";
+        el.innerHTML += this.get_jax_pmtrx_string(answers_arr);
+        
+        el.innerHTML += "\\)";
+        return el;
+    }
+    
+    build_answers_mtrx(answers_arr) {
+        let mtrx = [];
+        for (let i = 0; i < answers_arr.length; i += 1) {
+            let cur_arr = [];
+            for (let j = 0; j < answers_arr.length; j += 1) {
+                cur_arr.push(0);
+            }
+            cur_arr[i] = 1;
+            cur_arr.push(answers_arr[i]);
+            mtrx.push(cur_arr);
+        }
+        return mtrx;
+    }
+    
+    get_jax_answers_set(answers_arr) {
+        let answers_mtrx = this.build_answers_mtrx(answers_arr);
+        return this.get_jax_initial_set(answers_mtrx);
+    }
+    
+    render(mtrx, main_determinant, minors_arr, adjugate_mtrx, transposed_adjugate_mtrx, reversed_mtrx, free_terms_arr, answers_arr) {
+        this.render_div.innerHTML = "";
+    
+        this.render_div.appendChild(this.get_jax_initial_set(mtrx));
+        this.render_div.appendChild(this.get_jax_determinant(mtrx, main_determinant, 0));
+        if (main_determinant != 0) {
+            
+            for (let i = 0; i < mtrx.length; i += 1) {
+                for (let j = 0; j < mtrx.length; j += 1) {
+                    this.render_div.appendChild(this.get_jax_algebraic_complement(i, j, minors_arr));
+                }
+            }
+            
+            this.render_div.appendChild(this.get_jax_adjugate_mtrx(adjugate_mtrx));
+            this.render_div.appendChild(this.get_jax_transposed_adjugate_mtrx(transposed_adjugate_mtrx));
+            this.render_div.appendChild(this.get_jax_reversed_mtrx(transposed_adjugate_mtrx, main_determinant));
+            this.render_div.appendChild(this.get_jax_answer(transposed_adjugate_mtrx, main_determinant, free_terms_arr, answers_arr));
+            this.render_div.appendChild(this.get_jax_answers_set(answers_arr));
+            
+        } else {
+            this.render_div.appendChild(this.get_jax_determinant_warning());
+        }
+        
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "render_div"]);
+    }
+    
     run() {
         let main_determinant = this.get_determinant(this.mtrx);
         
-        let free_terms = this.get_transposed_free_terms_arr(this.mtrx);
+        let free_terms_arr = this.get_transposed_free_terms_arr(this.mtrx);
         this.delete_free_terms(this.mtrx);
         
         let minors_func_ans = this.get_minors(this.mtrx);
@@ -122,8 +289,9 @@ class MatrixMethod extends CramersMethod {
         let transposed_adjugate_mtrx = this.transpose_mtrx(adjugate_mtrx);
         let reversed_mtrx = this.get_reversed_mtrx(transposed_adjugate_mtrx, main_determinant);
         
-        let answer_arr = this.multiply_mtrxs(reversed_mtrx, free_terms);
-        console.log(this.transpose_mtrx(answer_arr));
+        let answers_arr = this.multiply_mtrxs(reversed_mtrx, free_terms_arr);
+        
+        this.render(this.mtrx, main_determinant, minors_func_ans, adjugate_mtrx, transposed_adjugate_mtrx, reversed_mtrx, free_terms_arr, answers_arr);
     }
     
 }
