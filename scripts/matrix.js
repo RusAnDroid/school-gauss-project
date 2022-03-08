@@ -276,6 +276,12 @@ class MatrixMethod extends CramersMethod {
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "render_div"]);
     }
     
+    round_answers(answers_arr) {
+        for (let i = 0; i < answers_arr.length; i += 1) {
+            answers_arr[i] = round_mod(answers_arr[i], BaseMethod.percision_number);
+        }
+    }
+    
     run() {
         let main_determinant = this.get_determinant(this.mtrx);
         
@@ -290,6 +296,7 @@ class MatrixMethod extends CramersMethod {
         let reversed_mtrx = this.get_reversed_mtrx(transposed_adjugate_mtrx, main_determinant);
         
         let answers_arr = this.multiply_mtrxs(reversed_mtrx, free_terms_arr);
+        this.round_answers(answers_arr);
         
         this.render(this.mtrx, main_determinant, minors_func_ans, adjugate_mtrx, transposed_adjugate_mtrx, reversed_mtrx, free_terms_arr, answers_arr);
     }

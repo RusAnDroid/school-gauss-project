@@ -101,7 +101,7 @@ class CramersMethod extends BaseMethod {
     get_jax_answer(determinant, main_determinant, id) {
         let el = document.createElement("div");
         el.classList.add("formula");
-        el.innerHTML = "\\( x_{" + id + "} = \\frac{\\Delta_{x_{" + id + "}}}{\\Delta}=\\frac{" + determinant + "}{" + main_determinant + "}=" + determinant / main_determinant + "\\)";
+        el.innerHTML = "\\( x_{" + id + "} = \\frac{\\Delta_{x_{" + id + "}}}{\\Delta}=\\frac{" + determinant + "}{" + main_determinant + "}=" + round_mod(determinant / main_determinant, BaseMethod.percision_number) + "\\)";
         return el;
     }
     
@@ -140,6 +140,7 @@ class CramersMethod extends BaseMethod {
         answer.length = this.mtrx.length;
         for (let i = 0; i < this.mtrx.length; i += 1) {
             answer[i] = auxiliary_determinants_arr[i] / main_determinant;
+            answer[i] = round_mod(answer[i], BaseMethod.percision_number);
         }
     
         this.render(this.mtrx, main_determinant, auxiliary_determinants_func_ans);

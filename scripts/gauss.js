@@ -1,7 +1,6 @@
 'use strict';
 
 class GaussMethod extends BaseMethod {
-    static percision_number = 8;
     delete_zero_strings() {
         let new_mtrx = [];
         for (let i = 0; i < this.mtrx.length; i += 1) {
@@ -170,7 +169,7 @@ class GaussMethod extends BaseMethod {
         this.create_used_array();
         while (this.check_used()) {
             let obj_var = this.get_single_var_id();
-            answers[obj_var.id] = round_mod(obj_var.value, GaussMethod.percision_number);
+            answers[obj_var.id] = round_mod(obj_var.value, BaseMethod.percision_number);
             this.replace_var_with_zero(obj_var.id, answers[obj_var.id]);
             this.delete_zero_strings();
             this.add_new_set_to_render(this.mtrx);

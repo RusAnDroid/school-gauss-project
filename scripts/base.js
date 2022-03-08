@@ -7,6 +7,8 @@ function round_mod(value, precision)
 }
 
 class BaseMethod {
+    static percision_number = 8;
+    
     set_matrix() {
         this.mtrx = [];
         this.mtrx.length = this.eq_num;
