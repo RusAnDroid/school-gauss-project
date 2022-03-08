@@ -41,10 +41,12 @@ function create_gauss_inputfield() {
 
 document.documentElement.querySelector("#gauss_eq_input").addEventListener("input", function() {
     create_gauss_inputfield();
-});                                                         
+});     
+
 document.documentElement.querySelector("#gauss_var_input").addEventListener("input", function() {
     create_gauss_inputfield();
 });
+
 document.documentElement.querySelector("#cramer_num_input").addEventListener("input", function() {
     let var_num = +document.documentElement.querySelector("#cramer_num_input").value;
     let main_div = document.documentElement.querySelector("#cramer_div_eqs");

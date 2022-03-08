@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Project</title>
+        <link rel="stylesheet" type="text/css" href="styles/gauss.css"/>
+    </head>
+
+    <body>
+        <header class="flex-block">
+            <nav class="container flex-block">
+                <a href="#">Arkhangelsky</a>
+
+                <ul class="flex-block">
+                    <li>
+                        <a href="#menu">Меню</a>
+                    </li>
+                    <li>
+                        <a href="#cramer_demonstration">Метод Крамера</a>
+                    </li>
+                    <li>
+                        <a href="#gauss_demonstration">Метод Гаусса</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="container">
+          
+            <div class="small-container">
+                <div>
+                    <label for="cramer_eq_input">Количество уравнений и переменных</label>
+                    <br>
+                    <input type="number" placeholder="Количество переменных и уравнений" id="cramer_num_input" min=1>
+                </div>
+                <div id="cramer_div_eqs"></div>
+                <button id="cramer_btn_count">Посчитать!</button>
+                <div id="cramer_visualization"></div>
+            </div>
+            
+            <hr>
+
+            <div class="small-container">
+                <div class="flex-block">
+                <div>
+                    <label for="gauss_eq_input">Количество уравнений</label>
+                    <br>
+                    <input type="number" placeholder="Количество уравнений" id="gauss_eq_input" min=1 value="">
+                </div>
+                <div>
+                    <label for="gauss_var_input">Количество переменных</label>
+                    <br>
+                    <input type="number" placeholder="Количество переменных" id="gauss_var_input" min=1>
+                </div>
+                </div>
+                <div id="gauss_div_eqs"></div>
+                <button id="gauss_btn_count">Посчитать!</button>
+                <div id="gauss_visualization"></div>
+            </div>
+            
+            <hr>
+            
+            <div class="small-container">
+                <div>
+                    <label for="matrix_num_input">Количество уравнений и переменных</label>
+                    <br>
+                    <input type="number" placeholder="Количество переменных и уравнений" id="matrix_num_input" min=1>
+                </div>
+                <div id="matrix_div_eqs"></div>
+                <button id="matrix_btn_count">Посчитать!</button>
+                <div id="matrix_visualization"></div>
+            </div>
+            
+            
+        </main>
+        
+        <footer class="container">
+            <hr>
+            <cite>&copy; Arkhangelsky Andrey, 2020-2021</cite>
+        </footer>
+        
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script src="scripts/base.js"></script>
+        <script src="scripts/gauss.js"></script>
+        <script src="scripts/cramer.js"></script>
+        <script src="scripts/matrix.js"></script>
+        <script src="scripts/main.js"></script>
+        
+    </body>
+        
+</html>

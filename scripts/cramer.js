@@ -59,7 +59,7 @@ class CramersMethod extends BaseMethod {
             deteminants_arr[k] = this.get_determinant(new_mtrx);
         }
         let answer = [];
-        answer.lwngth = 2;
+        answer.length = 2;
         answer[0] = deteminants_arr;
         answer[1] = mtrxs_arr;
         return answer;

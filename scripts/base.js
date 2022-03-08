@@ -57,15 +57,19 @@ class BaseMethod {
         el.innerHTML = "\\("
         if (this.check_coef_mtrx(mtrx)) {
             el.innerHTML += "\\left\\{\\begin{array}{l}";
+            
             for (let i = 0; i < mtrx.length; i += 1) {
                 if (this.check_coef_arr(mtrx[i])) {
                     for (let j = 0; j < mtrx[i].length - 2; j += 1) {
                         if (mtrx[i][j] != 0) {
+                            if (j == 0 && mtrx[i][j] < 0) {
+                                el.innerHTML += '-';
+                            }
                             if (el.innerHTML[el.innerHTML.length - 1] == '+' && mtrx[i][j] < 0) {
                                 el.innerHTML = el.innerHTML.substr(0, el.innerHTML.length - 1);
                                 el.innerHTML += '-';
                             }
-                            if (mtrx[i][j] != 1) {
+                            if (Math.abs(mtrx[i][j]) != 1) {
                                 el.innerHTML += "" + Math.abs(mtrx[i][j]);
                             }
                             el.innerHTML += this.create_mathjax_hint_text('x', j + 1, '+');
@@ -94,6 +98,7 @@ class BaseMethod {
             }
             el.innerHTML += "\\end{array}\\right.";
         }
+        
         el.innerHTML += "\\)";
     
         return el;
