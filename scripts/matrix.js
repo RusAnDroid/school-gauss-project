@@ -215,6 +215,24 @@ class MatrixMethod extends CramersMethod {
         return el;
     }
     
+    get_jax_answer_mtrx(arr) {
+        let str = "\\begin{pmatrix}";
+        
+        
+        for (let i = 0; i < arr.length; i += 1) {
+                str += arr[i];
+                
+                if (i < arr.length - 1) {
+                    str += "&" + "\\" + "\\";
+                }
+        }
+        
+        
+        str += "\\end{pmatrix}";
+
+        return str;
+    }
+    
     get_jax_answer(transposed_adjugate_mtrx, main_determinant, free_terms_arr, answers_arr) {
         let el = document.createElement("div");
         el.classList.add("formula");
@@ -225,7 +243,9 @@ class MatrixMethod extends CramersMethod {
         el.innerHTML += "\\times";
         el.innerHTML += this.get_jax_pmtrx_string(free_terms_arr);
         el.innerHTML += "=";
-        el.innerHTML += this.get_jax_pmtrx_string(answers_arr);
+        console.log(answers_arr);
+        el.innerHTML += this.get_jax_answer_mtrx(answers_arr);
+        console.log(el.innerHTML);
         
         el.innerHTML += "\\)";
         return el;
