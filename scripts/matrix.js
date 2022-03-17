@@ -243,9 +243,7 @@ class MatrixMethod extends CramersMethod {
         el.innerHTML += "\\times";
         el.innerHTML += this.get_jax_pmtrx_string(free_terms_arr);
         el.innerHTML += "=";
-        console.log(answers_arr);
         el.innerHTML += this.get_jax_answer_mtrx(answers_arr);
-        console.log(el.innerHTML);
         
         el.innerHTML += "\\)";
         return el;
@@ -270,10 +268,10 @@ class MatrixMethod extends CramersMethod {
         return this.get_jax_initial_set(answers_mtrx);
     }
     
-    render(mtrx, main_determinant, minors_arr, adjugate_mtrx, transposed_adjugate_mtrx, reversed_mtrx, free_terms_arr, answers_arr) {
+    render(init_mtrx, mtrx, main_determinant, minors_arr, adjugate_mtrx, transposed_adjugate_mtrx, reversed_mtrx, free_terms_arr, answers_arr) {
         this.render_div.innerHTML = "";
     
-        this.render_div.appendChild(this.get_jax_initial_set(mtrx));
+        this.render_div.appendChild(this.get_jax_initial_set(init_mtrx));
         this.render_div.appendChild(this.get_jax_determinant(mtrx, main_determinant, 0));
         if (main_determinant != 0) {
             
@@ -303,6 +301,7 @@ class MatrixMethod extends CramersMethod {
     }
     
     run() {
+        let init_mtrx = JSON.parse(JSON.stringify(this.mtrx));
         let main_determinant = this.get_determinant(this.mtrx);
         
         let free_terms_arr = this.get_transposed_free_terms_arr(this.mtrx);
@@ -318,7 +317,7 @@ class MatrixMethod extends CramersMethod {
         let answers_arr = this.multiply_mtrxs(reversed_mtrx, free_terms_arr);
         this.round_answers(answers_arr);
         
-        this.render(this.mtrx, main_determinant, minors_func_ans, adjugate_mtrx, transposed_adjugate_mtrx, reversed_mtrx, free_terms_arr, answers_arr);
+        this.render(init_mtrx, this.mtrx, main_determinant, minors_func_ans, adjugate_mtrx, transposed_adjugate_mtrx, reversed_mtrx, free_terms_arr, answers_arr);
     }
     
 }
